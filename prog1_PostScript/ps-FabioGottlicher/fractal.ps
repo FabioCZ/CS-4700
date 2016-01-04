@@ -1,0 +1,53 @@
+% Don't forget to document your code - brief description, inputs, outputs, and example usage
+
+
+%Fabio Gottlicher, A01647928, CS4700
+%Recursive function helper for fractal
+% input: dimension, width, length, angle
+% output: a fractal tree
+% usage: 4 5 150 40 fractal-helper
+/fractal-helper {
+	4 dict begin
+	/angle exch def
+	/length exch def
+	/width exch def
+	/dimension exch def
+
+	length 5 lt{
+		/length 5 def
+	} if
+	width 1 lt{
+		/width 1 def
+	} if
+	dimension 0 gt{	%if
+
+		0 0 moveto	%go to origin
+		width setlinewidth
+		0 length lineto
+		stroke
+
+		0 length 2 div translate
+		gsave
+		angle rotate		%left side
+		dimension 1 sub width 1 sub length 2 div angle fractal-helper
+		
+
+		grestore
+		gsave
+		angle -1 mul rotate	%right side 
+		dimension 1 sub width 1 sub length 2 div angle fractal-helper
+		grestore
+
+	} if
+	end
+} def
+
+%Fabio Gottlicher, A01647928, CS4700
+% Generates a fractal with base width = 5, base width = 150, angle = 40 deg
+% input: dimension
+% output: a fractal tree
+% usage: 4 fractal %generates 4 dimensional tree
+/fractal 
+{ 
+	5 150 50 fractal-helper
+} def

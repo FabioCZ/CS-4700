@@ -1,0 +1,46 @@
+% Uncomment and change this to the full path to your file (don't use "\") 
+% or just load this file into Ghostscript after you solution file
+(D:/GDrive/USU/CS4700/hw1/ps-FabioGottlicher/ackermann.ps) run
+
+/Times-Roman findfont  % Find the font 
+14 scalefont           % Make it a bigger font
+setfont                % Now load the font as the current font
+
+/print-stack 
+{                
+  1 dict begin
+    count 0 ne 
+	{
+      /x exch def
+      print-stack
+      x
+      5 string
+      cvs
+      show
+      ( ) show
+    } 
+    if
+  end
+} def                        
+
+100 600 translate
+0 0 moveto
+(Executing "0 0 ackermann", expecting 1 got ) show
+0 0 ackermann print-stack
+
+0 -20 translate
+0 0 moveto
+(Executing "1 1 ackermann", expecting 3 got ) show
+1 1 ackermann print-stack
+
+0 -20 translate
+0 0 moveto
+(Executing "3 4 ackermann", expecting 125 got ) show
+3 4 ackermann print-stack
+
+0 -20 translate
+0 0 moveto
+(Executing "3 1 ackermann", expecting 13 got ) show
+3 1 ackermann print-stack
+
+showpage

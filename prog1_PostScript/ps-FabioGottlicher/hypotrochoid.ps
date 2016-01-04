@@ -1,0 +1,50 @@
+% Don't forget to document your code - brief description, inputs, outputs, and example usage
+
+%Fabio Gottlicher, A01647928, CS4700
+% Draws a hypotrochoid based on a parameters
+% Equation:
+% x(t) = ((a - b) * cos(t)) + (d * cos( ((a-b) * t)/b ))
+% y(t) = ((a - b) * sin(t)) - (d * sin( ((a-b) * t)/b ))
+% input: a, b, d are coefficients, r is used such that t = 0..360*r
+% output graphics for hypotrochoid
+% usage: 100 25 40 1 hypotrochoid
+
+/hypotrochoid{
+	%define vars
+	9 dict begin	% Create local dictionary
+	/r exch def
+	/d exch def
+	/b exch def
+	/a exch def
+	/tempX 0 def %just a placeholder for second half of x calculation to make code more readable
+	/tempY 0 def %just a placeholder for second half of y calculation to make code more readable
+	/x 0 def
+	/y 0 def
+	/t 0 def
+	/maxT r 360 mul def
+
+
+	{
+
+	/tempX d a b sub t mul b div cos mul def
+	/tempY d a b sub t mul b div sin mul def
+	/x a b sub t cos mul tempX add def
+	/y a b sub t sin mul tempY sub def
+	
+	t 0 eq{	% initial point
+		x y moveto
+	} if
+
+	x y lineto
+	/t t 1 add def
+
+	t maxT gt{
+		exit
+	} if
+
+	} loop
+
+	end
+
+  % todo
+} def

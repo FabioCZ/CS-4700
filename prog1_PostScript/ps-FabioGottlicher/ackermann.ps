@@ -1,0 +1,35 @@
+% Don't forget to document your code - brief description, inputs, outputs, and example usage
+
+%Fabio Gottlicher, A01647928, CS4700
+% Ackermann function impl. for postscript using recursion, see : http://en.wikipedia.org/wiki/Ackermann_function
+% inputs: m and n are positive ints
+%output: pushes result of the function on the stack.
+% usage: m n ackermann
+
+/ackermann {
+	2 dict
+	begin
+	/n exch def
+	/m exch def
+
+  	m 0 eq	% m == 0
+  	{	%true	return n+1
+  		n 1 add
+  	}
+  	{	%false
+
+  		n 0 eq	% n == 0
+  		{		% true return A(m -1, 1)
+  				/n 1 def
+  				m 1 sub n ackermann
+
+  		}
+  		{		%false return A(m-1, A(m, n-1))
+  			/nTemp m n 1 sub ackermann def
+  			m 1 sub nTemp ackermann
+  		}
+  		ifelse
+  	}
+  	ifelse
+  	end
+} def

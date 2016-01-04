@@ -1,0 +1,46 @@
+% Uncomment and change this to the full path to your file (don't use "\") 
+% or just load this file into Ghostscript after you solution file
+(D:/GDrive/USU/CS4700/hw1/ps-FabioGottlicher/ternary.ps) run
+
+/Times-Roman findfont
+20 scalefont
+setfont
+
+/print-stack 
+{                
+  1 dict begin
+  count 0 ne 
+  {
+    /x exch def
+    print-stack
+    x
+    5 string
+    cvs
+    show
+    ( ) show
+  } 
+  if
+  end
+} def          
+
+25 700 translate
+0 0 moveto
+("2 {9} {1 2 add} ?" expecting 9, got ) show
+2 {9} {1 2 add} ? print-stack
+
+0 -20 translate
+0 0 moveto
+("0 {9} {1 2 add} ?" expecting 3, got ) show
+0 {9} {1 2 add} ? print-stack
+
+0 -20 translate
+0 0 moveto
+("2 {(ok)} {(zero)} ?" expecting ok, got ) show
+2 {(ok)} {(zero)} ? print-stack
+
+0 -20 translate
+0 0 moveto
+("5 4 add 9 sub {(nonzero)} {(zero)} ?" expecting zero, got ) show
+5 4 add 9 sub {(nonzero)} {(zero)} ? print-stack
+
+showpage

@@ -1,0 +1,21 @@
+% Don't forget to document your code - brief description, inputs, outputs, and example usage
+
+%Fabio Gottlicher, A01647928, CS4700
+%if op1 is non-zero evaluate op2 otherwise evaluate op3.
+% input: op1 is a bool condition to eval (bool in C sense, 0 is false, anything else is true), op2 gets pushed on true, op3 on false
+% output: op2 gets pushed on true, op3 on false
+% usage: 1 3 4 ? %3 gets pushed 
+% usage: 0 3 4 ? %4 gets pushed
+/? {        
+	3 1 roll
+	2 1 roll
+	0 eq
+	{	% true
+		pop		%get tid of op2, now op3 on top
+	}
+	{	%false
+		exch	% get op3 on top
+		pop		% get rid of op3, now op2 on top
+	}
+	ifelse
+} def
